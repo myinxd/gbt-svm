@@ -43,12 +43,5 @@ end
 accuracy = (1 - sum(double(xor(predict_label,y_test)))/length(y_test))*100;
 decisionValue = sum(dv,2)/ModelNum;
 
-% for i = 1 : ModelNum
-%     if(accuracy < acc{i}(1))
-%         predict_label = p(:,i);
-%         accuracy = acc{i}(1);
-%     end
-% end
-
 
 
