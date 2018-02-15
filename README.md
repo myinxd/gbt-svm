@@ -1,5 +1,8 @@
 # gbt-svm
-A MATLAB toolbox for Granular Binary-tree Support Vector Machine
+In this repo, a MATLAB toolbox for support vector machine (SVM) is provided. In order to handle imbalanced sample set and classification for multiple types, two strategies namely granularization and tree-structure are applied.
+
+## Requirements
+To use the toolbox, the famous [libsvm](https://www.csie.ntu.edu.tw/~cjlin/libsvm/) is required. Note that, to config this package, either the `VC++` for windows or the `g++` for linux should be installed.
 
 ## Citation
 This work has been published in ICSP 2016, which can be cited as following bibtex,
