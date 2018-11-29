@@ -1,7 +1,8 @@
 function [Model,NormMat] = myCrossSVM(TrainSet,TrainLabel,KernelType)
-% [Model] = myCrossSVM(TrainSet,TrainLabel,KernelType)
-% This code generate the SVN Models of our GBT-SVM algorithm
-% We use the crossvalidation to determine the parameters based on the kernel type 
+% [Model, NormMat] = myCrossSVM(TrainSet,TrainLabel,KernelType)
+% This code generate the SVM Model of our GBT-SVM algorithm
+% We use the crossvalidation and gridding to determine the parameters based 
+% on the kernel type 
 %
 % Input
 % TrainSet: the training feature set
@@ -13,22 +14,23 @@ function [Model,NormMat] = myCrossSVM(TrainSet,TrainLabel,KernelType)
 %             |       Polynomial      |  POL |
 %                           ...
 % Output
-% Model: the classification Model
+% Model: the classification model
 % NormMat: the mapminmax parameters of the TrainSet
 %
 % Version 1.0
 % Date: 2016/05/27
-% Zhixian MA
+% Author: Zhixian MA <zx@mazhixian.me>
+% https://github.com/myinxd/gbt-svm
 
-% Init
-eps = 10^-4;
-v = 5;
+if nargin < 3
+    KernelType = 'RBF';
+end
 
 % Normalization
 [TrainSet,NormMat] = mapminmax(TrainSet');
 TrainSet = TrainSet';
 
-% Judge whethter data structure of TrainLabel is right
+% Judge whether data structure of TrainLabel is right
 y_col = length(TrainLabel(1,:));
 if (y_col > 1)
     disp('Label matrix should be a vector.');
@@ -54,7 +56,7 @@ else
             cmd = ['-c ',num2str(bestc),' -t ', num2str(t)];
             Model = svmtrain(TrainLabel,TrainSet,cmd);
         case 'RBF'
-            [c,g] = meshgrid(-10:0.5:10,-10:0.2:10);
+            [c,g] = meshgrid(-5:0.5:5,-5:0.2:5);
             [m,n] = size(c);
             cg = zeros(m,n); eps = 10^-4; v = 5;
             bestc = 1; bestg = 0.1; bestacc = 0;
@@ -67,7 +69,7 @@ else
                         bestc = 2^c(i,j);
                         bestg = 2^g(i,j);
                     end
-                    if abs(cg(i,j) - bestacc) <= eps && bestc > 2^c(i,j)
+                    if abs(cg(i,j) - bestacc) <= eps %&& bestc > 2^c(i,j)
                         bestacc = cg(i,j);
                         bestc = 2^c(i,j);
                         bestg = 2^g(i,j);
