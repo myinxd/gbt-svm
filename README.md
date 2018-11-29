@@ -1,8 +1,8 @@
 # GBT-SVM
-In this repository, a MATLAB toolbox is provided to train and test the support vector machine (SVM) based models for imbalanced and multi-type classification problem. Two classification tricks namely `granularization` and `binary-tree` have been appended to form the GBT-SVM model. Please refer to my [paper](https://github.com/myinxd/document/paper-gbtsvm.pdf) for details of the model. 
+In this repository, a MATLAB toolbox is provided to train and test the support vector machine (SVM) based models for imbalanced and multi-type classification problem. Two classification tricks namely `granularization` and `binary-tree` have been appended to form the GBT-SVM model. Please refer to my [paper](https://github.com/myinxd/gbt-svm/blob/master/document/paper_gbtsvm.pdf) for details of the model. 
 
 ### Construction of the toolbox
-Codes and scripts in the [code](https://github.com/myinxd/gbt-svm/code) folder can be used to build your granular SVM (GSVM) models, which are able to form the tree-structure classifiers. I list the name and the corresponding comment here.
+Codes and scripts in the [code](https://github.com/myinxd/gbt-svm/tree/master/code) folder can be used to build your granular SVM (GSVM) models, which are able to form the tree-structure classifiers. I list the name and the corresponding comment here.
 
 | Method | Comment |
 |:-------|:--------|
@@ -33,7 +33,7 @@ To train a SVM model, please use the `myCrossSVM` method,
 where 'RBF' is the radical basis function kernel, other kernel like linear can be selected.The output `normMat` keeps the column-wise minimum and maximum values to normalize the new samples as the same as the samples for training. **The normalization is a very important issue in machine-learning tasks.**
 
 ### Example
-An [example](https://github.com/myinxd/gbt-svm/example) is demonstrated to use the GBT-SVM toolbox, please refer to [GSVM_train.m](https://github.com/myinxd/gbt-svm/example/GSVM_train.m) for details. The [sample set](https://github.com/myinxd/gbt-svm/data/SampleSet.mat) and trained [models](https://github.com/myinxd/gbt-svm/data/ModelGSVM.mat) are also included in this repo for a quick start. To evaluate the models and classify a new sample by the GSVM under a voting strategy, please refer to [GSVM_test.m](https://github.com/myinxd/gbt-svm/example/GSVM_test.m).
+An [example](https://github.com/myinxd/gbt-svm/tree/master/example) is demonstrated to use the GBT-SVM toolbox, please refer to [GSVM_train.m](https://github.com/myinxd/gbt-svm/blob/master/example/GSVM_train.m) for details. The [sample set](https://github.com/myinxd/gbt-svm/data/SampleSet.mat) and trained [models](https://github.com/myinxd/gbt-svm/blob/master/data/ModelGSVM.mat) are also included in this repo for a quick start. To evaluate the models and classify a new sample by the GSVM under a voting strategy, please refer to [GSVM_test.m](https://github.com/myinxd/gbt-svm/blob/master/example/GSVM_test.m).
 
 If you want to train the GSVM models with multi-threads, please use the codes as follows,
 ```matlab
